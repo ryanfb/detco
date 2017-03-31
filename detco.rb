@@ -24,10 +24,6 @@ if config.has_key?(:consumer_key) && config.has_key?(:consumer_secret)
     $stderr.puts "Setting OAuth tokens using Instapaper login"
     username = cli.ask("Username: ")
     password = cli.ask("Password: ") { |q| q.echo = "x" }
-    client = Instapaper::Client.new do |client|
-      client.consumer_key = config[:consumer_key]
-      client.consumer_secret = config[:consumer_secret]
-    end
     token = client.access_token(username, password)
     config[:oauth_token] = token.oauth_token
     config[:oauth_token_secret] = token.oauth_token_secret
